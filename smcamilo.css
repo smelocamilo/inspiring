@@ -1,0 +1,189 @@
+
+
+/* CARROSSEL */
+/* carrossel - manter a imagem sempre fluída */
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+
+/* BOTÕES*/
+/* Botão ir para o topo*/
+#btn-topo {
+  display: none; /* escondido por defeito */
+  position: fixed; /* Fixo/pegajoso posição */
+  bottom: 10px; /* colocar o butão no fundo da página */
+  right: 10px; /* Colocar o Butão pela direita */
+  z-index: 99; /* Certificar de que não se sobreponha */
+  border: 1px solid black; /* Adicionar bordas */
+  outline: none; /* Remover outline */
+  background-color: white; /* Cor do background */
+  color: black; /* Cor Texto */
+  cursor: pointer; /* Adicionar um ponteiro do mouse ao passar */
+  padding: 8px; /* Algum padding */
+  border-radius: 20px 20px 0px 20px; /* Cantos arredondados/círculo */
+  font-size: 18px; /* Aumentar tamanho da fonte */
+}
+#btn-topo:hover {
+  background-color: black; /* Adicionar um fundo cinza escuro ao passar */
+  color: white; /* Cor Texto */
+  border: 1px solid white;
+}
+
+/* CARREGADOR */
+/* Centrar o carregador */
+#carregador {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #212529;
+  border-bottom: 10px solid #212529;
+  border-left: 10px solid #ffc107;
+  border-right: 10px solid #ffc107;
+  -webkit-animation: spin 2s linear infinite;/* Safari */
+  animation: spin 2s linear infinite;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Adicionar animação ao "conteúdo da página" */
+.animacao-fundo {
+  position: relative;
+  -webkit-animation-name: animacao-fundo;
+  -webkit-animation-duration: 1s;
+  animation-name: animacao-fundo;
+  animation-duration: 1s
+}
+@-webkit-keyframest-keyframes animacao-fundo {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+@keyframes animacao-fundo { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0px; opacity:1 }
+}
+
+/* HISTÓRICO PROFISSIONAL*/
+/* linha do tempo real (régua vertical) */
+.linha-tempo {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* linha do tempo real (régua vertical) */
+.linha-tempo::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  background-color: #ffc107;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: 0px;
+}
+/* Recipiente em torno do conteúdo */
+.recipiente {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+/* Os círculos na linha do tempo */
+.recipiente::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: -19px;
+  background-color: #212529;
+  border: 10px solid #ffc107;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+/* Colocar o recipiente à esquerda */
+.esquerda {
+  left: 0;
+}
+/* Colocar o recipiente à direita */
+.direita {
+  left: 50%;
+}
+/* Adicionar setas ao recipiente esquerdo (apontando para à direita) */
+.esquerda::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid #ffc107;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #ffc107;
+}
+/* Adicionar setas ao recipiente direito (apontando para à esquerda) */
+.direita::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid #ffc107;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #ffc107 transparent transparent;
+}
+/* Corrijir o círculo para recipientes no lado direito */
+.direita::after {
+  left: -11px;
+}
+/* Conteúdo real */
+.conteudo {
+  padding: 20px 30px;
+  background-color: #ffc107;
+  position: relative;
+  border-radius: 15px;
+}
+/* Consultas de média - Linha do tempo fluída em ecrans com menos de 600 pixels de largura */
+@media screen and (max-width: 600px) {
+/* Colocar a linha de tempo à esquerda */
+  .linha-tempo::after {
+    left: 25px;
+  }
+/* Largura total dos recipientes */
+  .recipiente {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+/* Certificar de que todas as setas estejam apontando para à esquerda */
+  .recipiente::before {
+    left: 60px;
+    border: medium solid #ffc107;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #ffc107 transparent transparent;
+  }
+/* Certificar de que todos os círculos estejam no mesmo local */
+  .esquerda::after, .direita::after {
+    left: 15px;
+  }
+/* Fazer com que todos os recipientes certos se comportem como os da esquerda  */
+  .direita {
+    left: 0%;
+  }
+}
